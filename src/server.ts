@@ -1,11 +1,11 @@
 import Express from './express';
-import databaseConnection from '../database'
+import DatabaseConnection from './database'
 require('dotenv').config()
 
 
 const start = () => {
     const expressLoader = new Express()
-    databaseConnection();
+    DatabaseConnection();
     expressLoader.listen()
 }
 

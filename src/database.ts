@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import config from "./config/index"
+import config from "../config/index"
 
-const {database} = config
+const { database } = config
 const uri: string = database.dbUrl;
 
 mongoose.connection.once("open", () => {
