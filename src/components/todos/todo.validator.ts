@@ -7,4 +7,5 @@ todoSchema.createTodo = Joi.object({
     type: Joi.string().valid("work", "personal").required(),
 });
 
+
 export default todoSchema;

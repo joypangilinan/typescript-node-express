@@ -1,4 +1,5 @@
 import Todo from "../../models/todo.model";
+import HttpErrors from 'http-error'
 
 interface ITodoBody {
   _id?: string
@@ -28,6 +29,7 @@ class TodoService {
 
     return todos
   }
+
 }
 
 export default TodoService;

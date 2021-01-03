@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction, response } from 'express'
 import TodoService from './todo.service'
 import TodoValidator from './todo.validator';
-import JoiValidator from '../../utils/joiValidator'
+import JoiValidator from '../../utils/joiValidator.utils'
 
 export default {
     createTodo: async (req: Request, res: Response, next: NextFunction) => {
