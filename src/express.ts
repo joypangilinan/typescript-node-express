@@ -19,18 +19,7 @@ class Express {
 
   private initializeMiddlewares() {
     this.app.options('*', cors())
-    this.app.use(
-      cors({
-        origin: function (origin: any, cb: any) {
-          const env = server.env
-          if (env === 'local') {
-            return cb(null, true)
-          }
 
-          return cb(null, true)
-        },
-      })
-    )
     this.app.use(bodyParser.json());
     this.app.use(compression())
     this.app.use(
