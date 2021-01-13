@@ -1,11 +1,11 @@
 require('dotenv').config()
 
-module.exports = {
-    server : {
+export default {
+    server: {
         env: process.env.NODE_ENV || 'local',
         port: process.env.PORT,
     },
-    database : {
+    database: {
         dbUrl: process.env.DB_URL
     }
 }
