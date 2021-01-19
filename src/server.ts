@@ -1,11 +1,11 @@
 import Express from './express';
-import DatabaseConnection from './database'
-require('dotenv').config()
-
+import Knex from './knex'
 
 const start = () => {
     const expressLoader = new Express()
-    DatabaseConnection();
+    const knexLoader = new Knex()
+
+    knexLoader.initialize()
     expressLoader.listen()
 }
 

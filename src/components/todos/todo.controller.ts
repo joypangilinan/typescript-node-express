@@ -34,5 +34,5 @@ export default {
             console.log('GET ALL TODO: ', err.message)
             next(err)
         }
-    }
+    },
 }
