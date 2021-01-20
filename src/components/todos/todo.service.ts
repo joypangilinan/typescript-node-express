@@ -11,9 +11,9 @@ interface ITodoBody {
 class TodoService {
   constructor() { }
 
-  async createTodo(todoInfo: ITodoBody) {
+  async createTodo(data: ITodoBody) {
 
-    const todo = await Todo.query().insert(todoInfo)
+    const todo = await Todo.query().insert(data)
 
     return await Todo.query().findById(todo.id)
   };

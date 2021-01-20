@@ -14,10 +14,13 @@ export default {
 
             if (error) res.status(500).send(error.details);
 
-            const todoInfo = validatedRequestBody;
-            const result = await todoService.createTodo(todoInfo);
+            const data = validatedRequestBody;
+            const result = await todoService.createTodo(data);
 
-            return res.json(result)
+            return res.json({
+                message: "Created new task successfully",
+                data: result
+            })
         } catch (err) {
             console.log('CREATE TODO: ', err.message)
             next(err)
@@ -29,7 +32,10 @@ export default {
 
             const result = await todoService.getAllTodo()
 
-            return res.json(result)
+            return res.json({
+                message: "Fetched data successfully",
+                data: result
+            })
         } catch (err) {
             console.log('GET ALL TODO: ', err.message)
             next(err)

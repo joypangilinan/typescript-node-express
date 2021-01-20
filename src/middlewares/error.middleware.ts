@@ -1,17 +1,33 @@
-// import { NextFunction, Request, Response } from 'express';
-// import HttpException from '../exceptions/HttpException';
-// import { logger } from '../utils/logger';
+class ErrorHandler extends Error {
+    statusCode: number
+    message: string
+    constructor(statusCode: number, message: string) {
+        super()
+        this.statusCode = statusCode,
+            this.message = message
+    }
+}
 
-// const errorMiddleware = (error: HttpException, req: Request, res: Response, next: NextFunction) => {
-//   try {
-//     const status: number = error.status || 500;
-//     const message: string = error.message || 'Something went wrong';
+const handleError = (err: any, res: any) => {
+    const { statusCode = 500, message = 'Internal Server Error' } = err
 
-//     logger.error(`StatusCode : ${status}, Message : ${message}`);
-//     res.status(status).json({ message });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).json({ status: 'error', statusCode: 401, message: err.message })
+    }
+    if (err.name === 'Forbidden') {
+        res.status(403).json({ status: 'error', statusCode: 403, message: err.message })
+    }
+    if (err.name === 'NotFoundError') {
+        res.status(404).json({ status: 'error', statusCode: 404, message: err.message })
+    }
 
-// export default errorMiddleware;
+    res.status(statusCode).json({
+        status: 'error',
+        statusCode,
+        message
+    })
+}
+export {
+    ErrorHandler,
+    handleError
+}

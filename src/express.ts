@@ -1,11 +1,16 @@
+import express, {
+  Request,
+  Response,
+  NextFunction,
+} from 'express'
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import express from 'express';
 import helmet from 'helmet';
 import bodyParser from "body-parser";
 import compression from 'compression';
 import routes from './components/index';
 import config from '../config'
+import { handleError } from './middlewares/error.middleware'
 
 const { server } = config
 
@@ -33,6 +38,12 @@ class Express {
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(cookieParser())
+
+    this.app.use(
+      (err: any, req: Request, res: Response, next: NextFunction) => {
+        handleError(err, res)
+      }
+    )
   }
 
   public listen() {
