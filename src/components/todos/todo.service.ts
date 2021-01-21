@@ -1,5 +1,4 @@
 import Todo from "../../db/models/todo.model";
-import HttpErrors from 'http-error'
 
 interface ITodoBody {
   _id?: string
@@ -15,7 +14,7 @@ class TodoService {
 
     const todo = await Todo.query().insert(data)
 
-    return await Todo.query().findById(todo.id)
+    return todo
   };
 
   async getAllTodo() {

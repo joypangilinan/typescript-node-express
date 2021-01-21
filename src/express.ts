@@ -11,6 +11,7 @@ import compression from 'compression';
 import routes from './components/index';
 import config from '../config'
 import { handleError } from './middlewares/error.middleware'
+import passport from './middlewares/passport.middleware'
 
 const { server } = config
 
@@ -34,10 +35,12 @@ class Express {
         },
       })
     )
+    this.app.use(passport.initialize())
     this.app.use(routes)
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: false }))
     this.app.use(cookieParser())
+
 
     this.app.use(
       (err: any, req: Request, res: Response, next: NextFunction) => {

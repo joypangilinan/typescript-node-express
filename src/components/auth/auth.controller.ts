@@ -16,7 +16,7 @@ export default {
                 AuthValidator.createUser
             );
 
-            if (error) throw new ErrorHandler(500, error.details)
+            if (error) throw new ErrorHandler(422, error.details)
 
             const data = validatedRequestBody;
             delete data.confirmPassword
@@ -39,7 +39,7 @@ export default {
                 AuthValidator.loginUser
             );
 
-            if (error) throw new ErrorHandler(500, error.details)
+            if (error) throw new ErrorHandler(422, error.details)
 
             const data = validatedRequestBody
 

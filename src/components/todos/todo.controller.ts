@@ -2,6 +2,7 @@ import { Request, Response, NextFunction, response } from 'express'
 import TodoService from './todo.service'
 import TodoValidator from './todo.validator';
 import JoiValidator from '../../utils/joiValidator.utils'
+import { ErrorHandler } from '../../middlewares/error.middleware'
 
 export default {
     createTodo: async (req: Request, res: Response, next: NextFunction) => {
@@ -12,7 +13,7 @@ export default {
                 TodoValidator.createTodo
             );
 
-            if (error) res.status(500).send(error.details);
+            if (error) throw new ErrorHandler(422, error.details)
 
             const data = validatedRequestBody;
             const result = await todoService.createTodo(data);

@@ -20,6 +20,9 @@ const handleError = (err: any, res: any) => {
     if (err.name === 'NotFoundError') {
         res.status(404).json({ status: 'error', statusCode: 404, message: err.message })
     }
+    if (err.name === 'Unprocessable Entity') {
+        res.status(422).json({ status: 'error', statusCode: 422, message: err.message })
+    }
 
     res.status(statusCode).json({
         status: 'error',

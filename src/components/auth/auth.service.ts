@@ -28,7 +28,7 @@ class AuthService {
     };
 
     async login(data: IUserBody) {
-        const payload: IUserBody = {
+        const payload = {
             ...data,
         }
 
