@@ -3,7 +3,7 @@ import Todo from "../../db/models/todo.model";
 interface ITodoBody {
   _id?: string
   task?: string
-  completed?: boolean
+  status?: number
   type?: string
 }
 
